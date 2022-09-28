@@ -9,10 +9,12 @@
 
 using namespace std;
 
+//复制的数据，便于对比前后变化
 vector<int> dataCopy(100000);
 
 class Data{
 public:
+    //初始化函数。并设定part id
     Data(int id):part(id) {
         for(int i = 0; i < 100; i++) {
             data[i] = rand() % 10;
@@ -21,14 +23,17 @@ public:
         }
     }
 
+    //根据下标返回所需要的数据
     int GetData(int index) {
         return data[index];
     }
 
+    //根据下标和数值，修改数据
     void SetData(int number, int index) {
         data[index] = number;
     }
 
+    //展示数据
     void ShowData(){
         for(int i = 0; i < 100; i++) {
             cout << "原先的数据：index " << part * 100 + i << "    Data: " << dataCopy[part * 100 + i] << ";  现在数据为：" << data[i] << endl;
@@ -41,9 +46,7 @@ private:
     int part;
 };
 
-//数组
-
-
+//哈希表：方便根据id定位所需要的part
 unordered_map<int, Data*> map;
 
 class Worker{
